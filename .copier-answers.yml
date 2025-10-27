@@ -1,0 +1,15 @@
+# Changes here will be overwritten by Copier
+_commit: v0.2.0
+_src_path: gh:alan-turing-institute/python-project-template
+coc: our_coc
+email: dek44014@uga.edu
+full_name: Danielle
+license: MIT
+min_python_version: '3.10'
+org: daniellekaye
+project_name: test_project
+project_short_description: Test package for CSCI 4050 (Software Engineering), Fall
+    2025
+python_name: test_project
+typing: loose
+url: https://github.com/daniellekaye/test_project
