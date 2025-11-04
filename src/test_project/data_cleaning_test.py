@@ -1,6 +1,8 @@
 import pandas as pd
 
-path = "test_package\data\sp500_companies.csv"
+path = r'test_package\data\sp500_stocks.csv'
 df = pd.read_csv(path)
 
-print(df.head())
+df.dropna(inplace = True)
+
+print(df.head(20))
