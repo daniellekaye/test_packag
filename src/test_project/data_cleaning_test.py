@@ -16,3 +16,5 @@ df.set_index('Date', inplace=True)
 start_date = df.index.min()
 end_date = df.index.max()
 print(f"Data ranges from {start_date} to {end_date}")
+
+# Find which dates have 501 entries, then restrict df to that range
