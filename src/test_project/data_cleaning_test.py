@@ -12,4 +12,7 @@ df['Date'] = pd.to_datetime(df['Date'])
 #set data frame index to date
 df.set_index('Date', inplace=True)
 
-
+#find start and end dates
+start_date = df.index.min()
+end_date = df.index.max()
+print(f"Data ranges from {start_date} to {end_date}")
