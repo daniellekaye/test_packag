@@ -23,6 +23,28 @@ def clean_data():
     df = df.loc[mask]
     return df
 
-#test_df = clean_data()
-#print(test_df)
+def tech_data_only():
+    path = r'test_package\data\sp500_companies.csv'
+    df = pd.read_csv(path)
+    df.dropna(inplace=True)
+
+    #set df index to sector
+    sector_df = df.set_index('Sector')
+
+    #filter to only technology sector
+    tech_df = sector_df.loc['Technology']
+
+    #save all company symbols in a list
+    tech_symbols = tech_df['Symbol'].tolist()
+
+    #clean stock data
+    stock_df = clean_data()
+
+    #make mask of only technology company stocks
+    tech_stock_df = stock_df[stock_df['Symbol'].isin(tech_symbols)]
+
+    return tech_stock_df
+
+# test_df = tech_data_only()
+# print(test_df)
 
