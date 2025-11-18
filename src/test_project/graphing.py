@@ -4,7 +4,7 @@ from data_cleaning_test import clean_data, tech_data_only
 import datetime
 
 #clean the data
-df = tech_data_only()
+df = clean_data()
 #print(df)
 
 #print available stock symbols
