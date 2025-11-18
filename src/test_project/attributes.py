@@ -1,6 +1,4 @@
 import pandas as pd
-import datetime
-from data_cleaning_test import clean_data, tech_data_only
 
 def calculate_price_volatility(df):
     """
