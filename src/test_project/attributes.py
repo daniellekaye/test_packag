@@ -14,6 +14,10 @@ def calculate_price_volatility(df):
 
     #calculate average volatility for all stocks
     avg_volatility = volatility['price_volatility'].mean()
+
+    #round to 3 decimal places
+    avg_volatility = round(avg_volatility, 3)
+
     return avg_volatility
 
 def calculate_trading_volume(df):
@@ -27,19 +31,19 @@ def calculate_trading_volume(df):
 
     #calculate overall average trading volume
     overall_avg_volume = avg_volume['avg_trading_volume'].mean()
+   
+   #round to 3 decimal places
+    overall_avg_volume = round(overall_avg_volume, 3)
+
     return overall_avg_volume
 
-def calculare_PE_ratio(df):
+
+def calculate_PE_ratio(df):
     """
     Calculate the mean P/E ratio for all stocks in the DataFrame.
-    P/E ratio is defined as the closing price divided by earnings per share (EPS).
+    P/E ratio, in this circumstance, is a company's market cap divided by its EBITDA.
     """
-
     #calculate individual P/E ratio for each stock
-    df['PE_ratio'] = df['Close'] / df['EPS']
-    pe_ratio = df.groupby('Symbol')['PE_ratio'].mean().reset_index()
-    pe_ratio.columns = ['Symbol', 'avg_PE_ratio']
-
-    #calculate overall average P/E ratio
-    overall_avg_pe_ratio = pe_ratio['avg_PE_ratio'].mean()
-    return overall_avg_pe_ratio
+    pe_ratio = df.groupby('Symbol').apply(lambda x: x['Marketcap'].iloc[0] / x['EBITDA'].iloc[0] if x['EBITDA'].iloc[0] != 0 else None).reset_index()
+    pe_ratio.columns = ['Symbol', 'PE_ratio']
+    
