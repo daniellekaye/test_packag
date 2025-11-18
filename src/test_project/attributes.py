@@ -40,10 +40,15 @@ def calculate_trading_volume(df):
 
 def calculate_PE_ratio(df):
     """
-    Calculate the mean P/E ratio for all stocks in the DataFrame.
+    Calculate the mean P/E ratio for all companies in the DataFrame.
     P/E ratio, in this circumstance, is a company's market cap divided by its EBITDA.
     """
-    #calculate individual P/E ratio for each stock
-    pe_ratio = df.groupby('Symbol').apply(lambda x: x['Marketcap'].iloc[0] / x['EBITDA'].iloc[0] if x['EBITDA'].iloc[0] != 0 else None).reset_index()
-    pe_ratio.columns = ['Symbol', 'PE_ratio']
     
+    #calculate individual P/E ratio for each stock
+    pe_ratio = df.groupby('Symbol').apply(lambda x: x['Marketcap'].iloc[0] / 
+                                               x['Ebitda'].iloc[0] if x['Ebitda'].iloc[0] != 0 else None, include_groups=False).reset_index()
+    pe_ratio.columns = ['Symbol', 'PE_ratio']
+
+    #average P/E ratio for all companies
+    avg_pe_ratio = pe_ratio['PE_ratio'].mean()
+    return round(avg_pe_ratio, 3)
