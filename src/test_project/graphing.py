@@ -4,7 +4,7 @@ from data_cleaning_test import clean_data, tech_data_only
 import datetime
 
 #clean the data
-df = clean_data()
+df = tech_data_only()
 #print(df)
 
 #print available stock symbols
@@ -22,8 +22,7 @@ symbol_data = df[df['Symbol'] == selected_symbol]
 
 #get start and end date from the data
 end_date = symbol_data.index.max()
-start_date = datetime.datetime(2019, 1, 1)
-# start_date = symbol_data.index.min()
+start_date = symbol_data.index.min()
 #print(f"Data for {selected_symbol} from {start_date.date()} to {end_date.date()}")
 
 #resample to bi-monthly average closing prices over the last 5 years
