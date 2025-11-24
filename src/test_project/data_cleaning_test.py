@@ -45,6 +45,18 @@ def tech_data_only():
 
     return tech_stock_df
 
+def clean_tech_company_dataset():
+    path = r'test_package\data\sp500_companies.csv'
+    df = pd.read_csv(path)
+    df.dropna(inplace=True)
+
+    #set df index to sector
+    sector_df = df.set_index('Sector')
+
+    #filter to only technology sector
+    tech_df = sector_df.loc['Technology']
+
+    return tech_df
 # test_df = tech_data_only()
 # print(test_df)
 
