@@ -1,19 +1,5 @@
 import pandas as pd
 import datetime
-def create_dot_com_bubble_csv():
-    df_1 = pd.read_csv(r'test_package\data\Dot Com Bubble\Amazon.csv')
-    df_2 = pd.read_csv(r'test_package\data\Dot Com Bubble\CSCO_stock_data.csv')
-    df_3 = pd.read_csv(r'test_package\data\Dot Com Bubble\INTC_daily_data.csv')
-    df_4 = pd.read_csv(r'test_package\data\Dot Com Bubble\MSFT_daily_data.csv')
-
-    #combine all dataframes into one
-    combined_df = pd.concat([df_1, df_2, df_3, df_4], ignore_index=True)
-
-    #save as csv
-    combined_df.to_csv(r'test_package\data\Dot Com Bubble\combined_dot_com_data.csv', index=False)
-
-    #clean the data
-    dot_com_df = clean_data(datetime.datetime(1998, 1, 1), datetime.datetime(2002, 12, 31), r'test_package\data\Dot Com Bubble\combined_dot_com_data.csv')
 
 def clean_data(start_date, end_date, pathName):
     df = pd.read_csv(pathName)
@@ -72,4 +58,5 @@ def clean_tech_company_dataset():
     return tech_df
 # test_df = tech_data_only()
 # print(test_df)
+
 

@@ -1,7 +1,12 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-from data_cleaning_test import clean_data, tech_data_only
+from data_cleaning_test import clean_data, tech_data_only, clean_dot_com_bubble_data
 import datetime
+
+# Create combined Dot Com Bubble CSV (uncomment if needed)
+# create_dot_com_bubble_csv()
+clean_dot_com_bubble_data()
+
 
 #clean the data
 df = tech_data_only()

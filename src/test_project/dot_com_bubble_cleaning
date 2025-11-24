@@ -1,0 +1,40 @@
+import pandas as pd
+import datetime
+
+def create_dot_com_bubble_data_csv():
+    #add symbol column to MSFT data
+    msft_df = pd.read_csv(r'test_package\data\Dot Com Bubble\MSFT_daily_data.csv')
+    msft_df['Symbol'] = 'MSFT'
+
+    #add symbol column to INTC data
+    intc_df = pd.read_csv(r'test_package\data\Dot Com Bubble\INTC_daily_data.csv')
+    intc_df['Symbol'] = 'INTC'
+
+    #add symbol column to AMZN data
+    amzn_df = pd.read_csv(r'test_package\data\Dot Com Bubble\Amazon.csv')
+    amzn_df['Symbol'] = 'AMZN'
+
+    #rename ticker column to Symbol in CSCO data
+    csco_df = pd.read_csv(r'test_package\data\Dot Com Bubble\CSCO_stock_data.csv')
+    csco_df = csco_df.rename(columns={'ticker': 'Symbol'})
+
+    #rename columns in CSCO data to match other dataframes
+    csco_df = csco_df.rename(columns={
+        'open': 'Open',
+        'high': 'High',
+        'low': 'Low',
+        'close': 'Close',
+        'adjclose': 'Adj Close',
+        'volume': 'Volume'
+    })
+    #rename blank column 1 to date in CSCO data
+    csco_df = csco_df.rename(columns={'Unnamed: 0': 'Date'})
+
+    #combine all dataframes into one
+    combined_df = pd.concat([msft_df, intc_df, amzn_df, csco_df], ignore_index=True)
+    
+    #save combined dataframe to csv
+    combined_df.to_csv(r'test_package\data\Dot Com Bubble\dot_com_bubble_data.csv', index=False)
+
+
+create_dot_com_bubble_data_csv()
